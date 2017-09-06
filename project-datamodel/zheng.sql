@@ -1,3 +1,6 @@
+# 解决 MySQl 升级到 5.7 而引起的默认值不兼容的问题
+set session sql_mode='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+
 /*
 Navicat MySQL Data Transfer
 

@@ -10,6 +10,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * AES加解密工具类
@@ -128,17 +130,20 @@ public class AESUtil {
     }
 
     public static void main(String[] args) {
-        String[] keys = {
-                "", "123456"
+        final String str = "123456";
+
+        Map<String, String> result = new HashMap<String, String>(3){
+            private static final long serialVersionUID = 7485398577962310896L;
+            {
+                put("key", str);
+                String encryptString = AESEncode(str);
+                put("AESEncode", encryptString);
+                put("AESDecode", AESDecode(encryptString));
+            }
         };
-        System.out.println("key | AESEncode | AESDecode");
-        for (String key : keys) {
-            System.out.print(key + " | ");
-            String encryptString = AESEncode(key);
-            System.out.print(encryptString + " | ");
-            String decryptString = AESDecode(encryptString);
-            System.out.println(decryptString);
+
+        for(String key : result.keySet()){
+            System.out.println(key + ": " + result.get(key));
         }
     }
-
 }

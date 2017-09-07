@@ -41,7 +41,9 @@
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realms">
-            <list><ref bean="upmsRealm"/></list>
+            <list>
+                <ref bean="upmsRealm"/>
+            </list>
         </property>
         <property name="sessionManager" ref="sessionManager"/>
         <property name="rememberMeManager" ref="rememberMeManager"/>
@@ -60,7 +62,9 @@
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
         <property name="sessionValidationSchedulerEnabled" value="false"/>
         <property name="sessionListeners">
-            <list><ref bean="sessionListener"/></list>
+            <list>
+                <ref bean="sessionListener"/>
+            </list>
         </property>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
@@ -107,7 +111,8 @@
     </bean>
 
     <!-- 开启Shiro Spring AOP权限注解@RequiresPermissions的支持 -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>

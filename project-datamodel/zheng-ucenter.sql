@@ -7,92 +7,121 @@
 /*==============================================================*/
 /* Table: ucenter_oauth                                         */
 /*==============================================================*/
-create table ucenter_oauth
+CREATE TABLE ucenter_oauth
 (
-   oauth_id             int unsigned not null auto_increment comment '编号',
-   name                 varchar(20) comment '认证方式名称',
-   primary key (oauth_id)
+  oauth_id INT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '编号',
+  name     VARCHAR(20) COMMENT '认证方式名称',
+  PRIMARY KEY (oauth_id)
 );
 
-alter table ucenter_oauth comment '认证方式表';
+ALTER TABLE ucenter_oauth
+  COMMENT '认证方式表';
 
 /*==============================================================*/
 /* Table: ucenter_user                                          */
 /*==============================================================*/
-create table ucenter_user
+CREATE TABLE ucenter_user
 (
-   user_id              int unsigned not null auto_increment comment '编号',
-   password             varchar(32) comment '密码(MD5(密码+盐))',
-   salt                 varchar(32) comment '盐',
-   nickname             varchar(20) comment '昵称',
-   sex                  tinyint(4) default 0 comment '性别(0:未知,1:男,2:女)',
-   avatar               varchar(100) comment '头像',
-   create_time          timestamp default CURRENT_TIMESTAMP comment '注册时间',
-   create_ip            varchar(50) comment '注册IP地址',
-   last_login_time      timestamp comment '最后登录时间',
-   last_login_ip        varchar(50) comment '最后登录IP地址',
-   primary key (user_id)
+  user_id         INT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '编号',
+  password        VARCHAR(32) COMMENT '密码(MD5(密码+盐))',
+  salt            VARCHAR(32) COMMENT '盐',
+  nickname        VARCHAR(20) COMMENT '昵称',
+  sex             TINYINT(4)            DEFAULT 0
+  COMMENT '性别(0:未知,1:男,2:女)',
+  avatar          VARCHAR(100) COMMENT '头像',
+  create_time     TIMESTAMP             DEFAULT CURRENT_TIMESTAMP
+  COMMENT '注册时间',
+  create_ip       VARCHAR(50) COMMENT '注册IP地址',
+  last_login_time TIMESTAMP COMMENT '最后登录时间',
+  last_login_ip   VARCHAR(50) COMMENT '最后登录IP地址',
+  PRIMARY KEY (user_id)
 );
 
-alter table ucenter_user comment '用户表';
+ALTER TABLE ucenter_user
+  COMMENT '用户表';
 
 /*==============================================================*/
 /* Table: ucenter_user_details                                  */
 /*==============================================================*/
-create table ucenter_user_details
+CREATE TABLE ucenter_user_details
 (
-   user_id              int unsigned not null comment '编号',
-   signature            varchar(300) comment '个性签名',
-   real_name            varchar(20) comment '真实姓名',
-   birthday             timestamp comment '出生日期',
-   question             varchar(100) comment '帐号安全问题',
-   answer               varchar(100) comment '帐号安全答案',
-   primary key (user_id)
+  user_id   INT UNSIGNED NOT NULL
+  COMMENT '编号',
+  signature VARCHAR(300) COMMENT '个性签名',
+  real_name VARCHAR(20) COMMENT '真实姓名',
+  birthday  TIMESTAMP COMMENT '出生日期',
+  question  VARCHAR(100) COMMENT '帐号安全问题',
+  answer    VARCHAR(100) COMMENT '帐号安全答案',
+  PRIMARY KEY (user_id)
 );
 
-alter table ucenter_user_details comment '用户详情表';
+ALTER TABLE ucenter_user_details
+  COMMENT '用户详情表';
 
 /*==============================================================*/
 /* Table: ucenter_user_log                                      */
 /*==============================================================*/
-create table ucenter_user_log
+CREATE TABLE ucenter_user_log
 (
-   user_log_id          int unsigned not null auto_increment comment '编号',
-   user_id              int unsigned comment '用户编号',
-   content              varbinary(100) comment '内容',
-   ip                   varchar(20) comment '操作IP地址',
-   agent                varbinary(200) comment '操作环境',
-   create_time          timestamp default CURRENT_TIMESTAMP comment '操作时间',
-   primary key (user_log_id)
+  user_log_id INT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '编号',
+  user_id     INT UNSIGNED COMMENT '用户编号',
+  content     VARBINARY(100) COMMENT '内容',
+  ip          VARCHAR(20) COMMENT '操作IP地址',
+  agent       VARBINARY(200) COMMENT '操作环境',
+  create_time TIMESTAMP             DEFAULT CURRENT_TIMESTAMP
+  COMMENT '操作时间',
+  PRIMARY KEY (user_log_id)
 );
 
-alter table ucenter_user_log comment '用户操作日志表';
+ALTER TABLE ucenter_user_log
+  COMMENT '用户操作日志表';
 
 /*==============================================================*/
 /* Table: ucenter_user_oauth                                    */
 /*==============================================================*/
-create table ucenter_user_oauth
+CREATE TABLE ucenter_user_oauth
 (
-   user_oauth_id        int unsigned not null auto_increment comment '编号',
-   user_id              int unsigned not null comment '帐号编号',
-   oauth_id             int unsigned not null comment '认证方式编号',
-   open_id              varbinary(50) not null comment '第三方ID',
-   status               tinyint(4) unsigned comment '绑定状态(0:解绑,1:绑定)',
-   create_time          timestamp default CURRENT_TIMESTAMP comment '创建时间',
-   primary key (user_oauth_id)
+  user_oauth_id INT UNSIGNED  NOT NULL AUTO_INCREMENT
+  COMMENT '编号',
+  user_id       INT UNSIGNED  NOT NULL
+  COMMENT '帐号编号',
+  oauth_id      INT UNSIGNED  NOT NULL
+  COMMENT '认证方式编号',
+  open_id       VARBINARY(50) NOT NULL
+  COMMENT '第三方ID',
+  status        TINYINT(4) UNSIGNED COMMENT '绑定状态(0:解绑,1:绑定)',
+  create_time   TIMESTAMP              DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  PRIMARY KEY (user_oauth_id)
 );
 
-alter table ucenter_user_oauth comment '用户认证方式表';
+ALTER TABLE ucenter_user_oauth
+  COMMENT '用户认证方式表';
 
-alter table ucenter_user_details add constraint FK_Reference_41 foreign key (user_id)
-      references ucenter_user (user_id) on delete restrict on update restrict;
+ALTER TABLE ucenter_user_details
+  ADD CONSTRAINT FK_Reference_41 FOREIGN KEY (user_id)
+REFERENCES ucenter_user (user_id)
+  ON DELETE RESTRICT
+  ON UPDATE RESTRICT;
 
-alter table ucenter_user_log add constraint FK_Reference_44 foreign key (user_id)
-      references ucenter_user (user_id) on delete restrict on update restrict;
+ALTER TABLE ucenter_user_log
+  ADD CONSTRAINT FK_Reference_44 FOREIGN KEY (user_id)
+REFERENCES ucenter_user (user_id)
+  ON DELETE RESTRICT
+  ON UPDATE RESTRICT;
 
-alter table ucenter_user_oauth add constraint FK_Reference_42 foreign key (user_id)
-      references ucenter_user (user_id) on delete restrict on update restrict;
+ALTER TABLE ucenter_user_oauth
+  ADD CONSTRAINT FK_Reference_42 FOREIGN KEY (user_id)
+REFERENCES ucenter_user (user_id)
+  ON DELETE RESTRICT
+  ON UPDATE RESTRICT;
 
-alter table ucenter_user_oauth add constraint FK_Reference_43 foreign key (oauth_id)
-      references ucenter_oauth (oauth_id) on delete restrict on update restrict;
+ALTER TABLE ucenter_user_oauth
+  ADD CONSTRAINT FK_Reference_43 FOREIGN KEY (oauth_id)
+REFERENCES ucenter_oauth (oauth_id)
+  ON DELETE RESTRICT
+  ON UPDATE RESTRICT;
 

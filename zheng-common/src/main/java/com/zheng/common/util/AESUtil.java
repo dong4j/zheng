@@ -3,15 +3,20 @@ package com.zheng.common.util;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-import javax.crypto.*;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * AES加解密工具类
@@ -132,7 +137,7 @@ public class AESUtil {
     public static void main(String[] args) {
         final String str = "123456";
 
-        Map<String, String> result = new HashMap<String, String>(3){
+        Map<String, String> result = new HashMap<String, String>(3) {
             private static final long serialVersionUID = 7485398577962310896L;
             {
                 put("key", str);
@@ -142,7 +147,7 @@ public class AESUtil {
             }
         };
 
-        for(String key : result.keySet()){
+        for (String key : result.keySet()) {
             System.out.println(key + ": " + result.get(key));
         }
     }

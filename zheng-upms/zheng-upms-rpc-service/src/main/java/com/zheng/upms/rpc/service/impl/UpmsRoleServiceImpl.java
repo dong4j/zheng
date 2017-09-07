@@ -6,6 +6,7 @@ import com.zheng.upms.dao.mapper.UpmsRoleMapper;
 import com.zheng.upms.dao.model.UpmsRole;
 import com.zheng.upms.dao.model.UpmsRoleExample;
 import com.zheng.upms.rpc.api.UpmsRoleService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UpmsRoleServiceImpl extends BaseServiceImpl<UpmsRoleMapper, UpmsRole, UpmsRoleExample> implements UpmsRoleService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsRoleServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsRoleServiceImpl.class);
 
     @Autowired
     UpmsRoleMapper upmsRoleMapper;

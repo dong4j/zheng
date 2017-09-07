@@ -6,6 +6,7 @@ import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.shiro.session.UpmsSessionDao;
 import com.zheng.upms.client.util.RequestParameterUtil;
 import com.zheng.upms.common.constant.UpmsConstant;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,16 +26,18 @@ import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import redis.clients.jedis.Jedis;
+
+import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
+
+import redis.clients.jedis.Jedis;
 
 /**
  * 重写authc过滤器
@@ -42,7 +45,7 @@ import java.util.List;
  */
 public class UpmsAuthenticationFilter extends AuthenticationFilter {
 
-    private final static Logger _log = LoggerFactory.getLogger(UpmsAuthenticationFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsAuthenticationFilter.class);
 
     // 局部会话key
     private final static String ZHENG_UPMS_CLIENT_SESSION_ID = "zheng-upms-client-session-id";
@@ -114,7 +117,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
                 try {
                     httpServletResponse.sendRedirect(backUrl.toString());
                 } catch (IOException e) {
-                    _log.error("局部会话已登录，移除code参数跳转出错：", e);
+                   logger.error("局部会话已登录，移除code参数跳转出错：", e);
                 }
             } else {
                 return true;
@@ -143,7 +146,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
                         RedisUtil.set(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + sessionId, code, timeOut);
                         // 保存code对应的局部会话sessionId，方便退出操作
                         RedisUtil.sadd(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code, sessionId, timeOut);
-                        _log.debug("当前code={}，对应的注册系统个数：{}个", code, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
+                       logger.debug("当前code={}，对应的注册系统个数：{}个", code, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
                         // 移除url中的token参数
                         String backUrl = RequestParameterUtil.getParameterWithOutCode(WebUtils.toHttp(request));
                         // 返回请求资源
@@ -155,14 +158,14 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
                             httpServletResponse.sendRedirect(backUrl.toString());
                             return true;
                         } catch (IOException e) {
-                            _log.error("已拿到code，移除code参数跳转出错：", e);
+                           logger.error("已拿到code，移除code参数跳转出错：", e);
                         }
                     } else {
-                        _log.warn(result.getString("data"));
+                       logger.warn(result.getString("data"));
                     }
                 }
             } catch (IOException e) {
-                _log.error("验证token失败：", e);
+               logger.error("验证token失败：", e);
             }
         }
         return false;

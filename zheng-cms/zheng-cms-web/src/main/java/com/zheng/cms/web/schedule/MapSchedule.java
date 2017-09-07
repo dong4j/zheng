@@ -2,10 +2,15 @@ package com.zheng.cms.web.schedule;
 
 import com.taobao.pamirs.schedule.IScheduleTaskDealSingle;
 import com.taobao.pamirs.schedule.TaskItemDefine;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 测试任务
@@ -13,7 +18,7 @@ import java.util.*;
  */
 public class MapSchedule implements IScheduleTaskDealSingle<Map> {
 
-    private static Logger _log = LoggerFactory.getLogger(MapSchedule.class);
+    private static final Logger logger = LoggerFactory.getLogger(MapSchedule.class);
 
     /**
      * 执行单个任务
@@ -23,7 +28,7 @@ public class MapSchedule implements IScheduleTaskDealSingle<Map> {
      */
     @Override
     public boolean execute(Map item, String ownSign) throws Exception {
-        _log.info("执行任务：{}", item);
+       logger.info("执行任务：{}", item);
         return true;
     }
 

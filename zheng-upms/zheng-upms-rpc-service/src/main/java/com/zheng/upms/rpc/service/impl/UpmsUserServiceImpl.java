@@ -6,6 +6,7 @@ import com.zheng.upms.dao.mapper.UpmsUserMapper;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsUserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UpmsUserServiceImpl extends BaseServiceImpl<UpmsUserMapper, UpmsUser, UpmsUserExample> implements UpmsUserService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsUserServiceImpl.class);
 
     @Autowired
     UpmsUserMapper upmsUserMapper;

@@ -1,11 +1,12 @@
 package com.zheng.cms.rpc.service.impl;
 
-import com.zheng.common.annotation.BaseService;
-import com.zheng.common.base.BaseServiceImpl;
 import com.zheng.cms.dao.mapper.CmsCommentMapper;
 import com.zheng.cms.dao.model.CmsComment;
 import com.zheng.cms.dao.model.CmsCommentExample;
 import com.zheng.cms.rpc.api.CmsCommentService;
+import com.zheng.common.annotation.BaseService;
+import com.zheng.common.base.BaseServiceImpl;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class CmsCommentServiceImpl extends BaseServiceImpl<CmsCommentMapper, CmsComment, CmsCommentExample> implements CmsCommentService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsCommentServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(CmsCommentServiceImpl.class);
 
     @Autowired
     CmsCommentMapper cmsCommentMapper;

@@ -1,11 +1,12 @@
 package com.zheng.cms.rpc.service.impl;
 
-import com.zheng.common.annotation.BaseService;
-import com.zheng.common.base.BaseServiceImpl;
 import com.zheng.cms.dao.mapper.CmsSettingMapper;
 import com.zheng.cms.dao.model.CmsSetting;
 import com.zheng.cms.dao.model.CmsSettingExample;
 import com.zheng.cms.rpc.api.CmsSettingService;
+import com.zheng.common.annotation.BaseService;
+import com.zheng.common.base.BaseServiceImpl;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class CmsSettingServiceImpl extends BaseServiceImpl<CmsSettingMapper, CmsSetting, CmsSettingExample> implements CmsSettingService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
 
     @Autowired
     CmsSettingMapper cmsSettingMapper;

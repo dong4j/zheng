@@ -1,6 +1,7 @@
 package com.zheng.upms.server;
 
 import com.zheng.common.base.BaseInterface;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,11 +11,11 @@ import org.slf4j.LoggerFactory;
  */
 public class Initialize implements BaseInterface {
 
-	private static Logger _log = LoggerFactory.getLogger(Initialize.class);
+	private static final Logger logger = LoggerFactory.getLogger(Initialize.class);
 
 	@Override
 	public void init() {
-		_log.info(">>>>> 系统初始化");
+		logger.info(">>>>> 系统初始化");
 	}
 
 }

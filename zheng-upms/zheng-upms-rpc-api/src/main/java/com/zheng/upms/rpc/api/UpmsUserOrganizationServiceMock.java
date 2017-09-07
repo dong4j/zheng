@@ -4,6 +4,7 @@ import com.zheng.common.base.BaseServiceMock;
 import com.zheng.upms.dao.mapper.UpmsUserOrganizationMapper;
 import com.zheng.upms.dao.model.UpmsUserOrganization;
 import com.zheng.upms.dao.model.UpmsUserOrganizationExample;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,11 +14,11 @@ import org.slf4j.LoggerFactory;
 */
 public class UpmsUserOrganizationServiceMock extends BaseServiceMock<UpmsUserOrganizationMapper, UpmsUserOrganization, UpmsUserOrganizationExample> implements UpmsUserOrganizationService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserOrganizationServiceMock.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsUserOrganizationServiceMock.class);
 
     @Override
     public int organization(String[] organizationIds, int id) {
-        _log.info("UpmsUserOrganizationServiceMock => organization");
+       logger.info("UpmsUserOrganizationServiceMock => organization");
         return 0;
     }
 

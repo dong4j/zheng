@@ -2,12 +2,10 @@ package com.zheng.cms.web.controller;
 
 import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
-import com.zheng.cms.dao.model.CmsTag;
-import com.zheng.cms.dao.model.CmsTagExample;
 import com.zheng.cms.rpc.api.CmsArticleService;
-import com.zheng.cms.rpc.api.CmsTagService;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.Paginator;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 搜索控制器
@@ -30,7 +29,7 @@ import java.util.List;
 @RequestMapping(value = "/search")
 public class SearchController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(SearchController.class);
+	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 
 	@Autowired
 	private CmsArticleService cmsArticleService;

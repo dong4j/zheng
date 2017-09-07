@@ -8,6 +8,7 @@ import com.zheng.upms.dao.mapper.UpmsRolePermissionMapper;
 import com.zheng.upms.dao.model.UpmsRolePermission;
 import com.zheng.upms.dao.model.UpmsRolePermissionExample;
 import com.zheng.upms.rpc.api.UpmsRolePermissionService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import java.util.List;
 @BaseService
 public class UpmsRolePermissionServiceImpl extends BaseServiceImpl<UpmsRolePermissionMapper, UpmsRolePermission, UpmsRolePermissionExample> implements UpmsRolePermissionService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsRolePermissionServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsRolePermissionServiceImpl.class);
 
     @Autowired
     UpmsRolePermissionMapper upmsRolePermissionMapper;

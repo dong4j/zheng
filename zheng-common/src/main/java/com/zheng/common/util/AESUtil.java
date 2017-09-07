@@ -27,13 +27,15 @@ public class AESUtil {
     private static final String encodeRules = "zheng";
 
     /**
-     * 加密
+     * 加密.
      * 1.构造密钥生成器
      * 2.根据ecnodeRules规则初始化密钥生成器
      * 3.产生密钥
      * 4.创建和初始化密码器
      * 5.内容加密
      * 6.返回字符串
+     * @param content the content
+     * @return the string
      */
     public static String AESEncode(String content) {
         try {
@@ -62,20 +64,10 @@ public class AESUtil {
             //这里用Base64Encoder中会找不到包
             //解决办法：
             //在项目的Build path中先移除JRE System Library，再添加库JRE System Library，重新编译后就一切正常了。
-            String AES_encode = new String(new BASE64Encoder().encode(byte_AES));
             //11.将字符串返回
-            return AES_encode;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+            return new BASE64Encoder().encode(byte_AES);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException | InvalidKeyException
+            | UnsupportedEncodingException | BadPaddingException e) {
             e.printStackTrace();
         }
         //如果有错就返加nulll
@@ -83,11 +75,13 @@ public class AESUtil {
     }
 
     /**
-     * 解密
+     * 解密.
      * 解密过程：
      * 1.同加密1-4步
      * 2.将加密后的字符串反纺成byte[]数组
      * 3.将加密内容解密
+     * @param content the content
+     * @return the string
      */
     public static String AESDecode(String content) {
         try {
@@ -114,21 +108,12 @@ public class AESUtil {
              * 解密
              */
             byte[] byte_decode = cipher.doFinal(byte_content);
-            String AES_decode = new String(byte_decode, "utf-8");
-            return AES_decode;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            return new String(byte_decode, "utf-8");
+        } catch (NoSuchAlgorithmException | IOException | InvalidKeyException | NoSuchPaddingException |
+            BadPaddingException e) {
             e.printStackTrace();
         } catch (IllegalBlockSizeException e) {
             throw new RuntimeException("兄弟，配置文件中的密码需要使用AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值！");
-            //e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
         }
         //如果有错就返加nulll
         return null;
@@ -139,6 +124,7 @@ public class AESUtil {
 
         Map<String, String> result = new HashMap<String, String>(3) {
             private static final long serialVersionUID = 7485398577962310896L;
+
             {
                 put("key", str);
                 String encryptString = AESEncode(str);

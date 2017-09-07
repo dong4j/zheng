@@ -1,6 +1,7 @@
 package com.zheng.demo.web.interceptor;
 
 import com.zheng.common.util.PropertiesFileUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DemoInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(DemoInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(DemoInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

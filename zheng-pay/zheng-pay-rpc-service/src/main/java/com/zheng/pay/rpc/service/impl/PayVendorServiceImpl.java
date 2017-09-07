@@ -6,6 +6,7 @@ import com.zheng.pay.dao.mapper.PayVendorMapper;
 import com.zheng.pay.dao.model.PayVendor;
 import com.zheng.pay.dao.model.PayVendorExample;
 import com.zheng.pay.rpc.api.PayVendorService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class PayVendorServiceImpl extends BaseServiceImpl<PayVendorMapper, PayVendor, PayVendorExample> implements PayVendorService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayVendorServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(PayVendorServiceImpl.class);
 
     @Autowired
     PayVendorMapper payVendorMapper;

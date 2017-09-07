@@ -10,12 +10,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ZhengPayRpcServiceApplication {
 
-	private static Logger _log = LoggerFactory.getLogger(ZhengPayRpcServiceApplication.class);
+	private static final Logger logger = LoggerFactory.getLogger(ZhengPayRpcServiceApplication.class);
 
 	public static void main(String[] args) {
-		_log.info(">>>>> zheng-pay-rpc-service 正在启动 <<<<<");
+		logger.info(">>>>> zheng-pay-rpc-service 正在启动 <<<<<");
 		new ClassPathXmlApplicationContext("classpath*:applicationContext*.xml");
-		_log.info(">>>>> zheng-pay-rpc-service 启动完成 <<<<<");
+		logger.info(">>>>> zheng-pay-rpc-service 启动完成 <<<<<");
 	}
 
 }

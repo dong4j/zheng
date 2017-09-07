@@ -7,9 +7,16 @@ import com.zheng.common.base.BaseServiceImpl;
 import com.zheng.upms.dao.mapper.UpmsPermissionMapper;
 import com.zheng.upms.dao.mapper.UpmsSystemMapper;
 import com.zheng.upms.dao.mapper.UpmsUserPermissionMapper;
-import com.zheng.upms.dao.model.*;
+import com.zheng.upms.dao.model.UpmsPermission;
+import com.zheng.upms.dao.model.UpmsPermissionExample;
+import com.zheng.upms.dao.model.UpmsRolePermission;
+import com.zheng.upms.dao.model.UpmsSystem;
+import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.dao.model.UpmsUserPermission;
+import com.zheng.upms.dao.model.UpmsUserPermissionExample;
 import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.api.UpmsPermissionService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +34,7 @@ import java.util.List;
 @BaseService
 public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMapper, UpmsPermission, UpmsPermissionExample> implements UpmsPermissionService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsPermissionServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsPermissionServiceImpl.class);
 
     @Autowired
     UpmsSystemMapper upmsSystemMapper;

@@ -5,6 +5,7 @@ import com.zheng.cms.dao.model.CmsTopicExample;
 import com.zheng.cms.rpc.api.CmsTopicService;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.Paginator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 专题首页控制器
@@ -26,7 +28,7 @@ import java.util.List;
 @RequestMapping(value = "/topic")
 public class TopicController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(TopicController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TopicController.class);
 
     @Autowired
     private CmsTopicService cmsTopicService;

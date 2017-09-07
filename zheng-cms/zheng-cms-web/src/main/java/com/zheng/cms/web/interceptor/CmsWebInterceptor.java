@@ -4,15 +4,17 @@ import com.zheng.cms.dao.model.CmsMenu;
 import com.zheng.cms.dao.model.CmsMenuExample;
 import com.zheng.cms.rpc.api.CmsMenuService;
 import com.zheng.common.util.PropertiesFileUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * 公共拦截器
@@ -20,7 +22,7 @@ import java.util.List;
  */
 public class CmsWebInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsWebInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(CmsWebInterceptor.class);
 
     @Autowired
     private CmsMenuService cmsMenuService;

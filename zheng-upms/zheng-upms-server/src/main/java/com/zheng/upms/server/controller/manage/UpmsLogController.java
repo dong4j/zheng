@@ -6,19 +6,25 @@ import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsLog;
 import com.zheng.upms.dao.model.UpmsLogExample;
 import com.zheng.upms.rpc.api.UpmsLogService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 日志controller
@@ -29,7 +35,7 @@ import java.util.Map;
 @RequestMapping("/manage/log")
 public class UpmsLogController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsLogController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsLogController.class);
 
     @Autowired
     private UpmsLogService upmsLogService;

@@ -9,8 +9,7 @@ import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -29,10 +28,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.net.*;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.URLEncoder;
-import java.util.UUID;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 单点登录管理
@@ -43,7 +46,7 @@ import java.util.UUID;
 @Api(value = "单点登录管理", description = "单点登录管理")
 public class SSOController extends BaseController {
 
-    private final static Logger _log = LoggerFactory.getLogger(SSOController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SSOController.class);
     // 全局会话key
     private final static String ZHENG_UPMS_SERVER_SESSION_ID = "zheng-upms-server-session-id";
     // 全局会话key列表
@@ -101,7 +104,7 @@ public class SSOController extends BaseController {
                     backurl += "?upms_code=" + code + "&upms_username=" + username;
                 }
             }
-            _log.debug("认证中心帐号通过，带code回跳：{}", backurl);
+           logger.debug("认证中心帐号通过，带code回跳：{}", backurl);
             return "redirect:" + backurl;
         }
         return "/sso/login.jsp";

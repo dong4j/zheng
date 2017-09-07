@@ -6,6 +6,7 @@ import com.zheng.upms.dao.mapper.UpmsUserOrganizationMapper;
 import com.zheng.upms.dao.model.UpmsUserOrganization;
 import com.zheng.upms.dao.model.UpmsUserOrganizationExample;
 import com.zheng.upms.rpc.api.UpmsUserOrganizationService;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UpmsUserOrganizationServiceImpl extends BaseServiceImpl<UpmsUserOrganizationMapper, UpmsUserOrganization, UpmsUserOrganizationExample> implements UpmsUserOrganizationService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserOrganizationServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsUserOrganizationServiceImpl.class);
 
     @Autowired
     UpmsUserOrganizationMapper upmsUserOrganizationMapper;

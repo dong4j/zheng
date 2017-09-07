@@ -3,16 +3,22 @@ package com.zheng.upms.client.shiro.session;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.util.SerializableUtil;
 import com.zheng.upms.common.constant.UpmsConstant;
+
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.Jedis;
 
-import java.io.Serializable;
-import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import redis.clients.jedis.Jedis;
 
 /**
  * 基于redis的sessionDao，缓存共享session
@@ -20,7 +26,7 @@ import java.util.*;
  */
 public class UpmsSessionDao extends CachingSessionDAO {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsSessionDao.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsSessionDao.class);
     // 会话key
     private final static String ZHENG_UPMS_SHIRO_SESSION_ID = "zheng-upms-shiro-session-id";
     // 全局会话key
@@ -39,14 +45,14 @@ public class UpmsSessionDao extends CachingSessionDAO {
         Serializable sessionId = generateSessionId(session);
         assignSessionId(session, sessionId);
         RedisUtil.set(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId, SerializableUtil.serialize(session), (int) session.getTimeout() / 1000);
-        _log.debug("doCreate >>>>> sessionId={}", sessionId);
+       logger.debug("doCreate >>>>> sessionId={}", sessionId);
         return sessionId;
     }
 
     @Override
     protected Session doReadSession(Serializable sessionId) {
         String session = RedisUtil.get(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId);
-        _log.debug("doReadSession >>>>> sessionId={}", sessionId);
+       logger.debug("doReadSession >>>>> sessionId={}", sessionId);
         return SerializableUtil.deserialize(session);
     }
 
@@ -65,7 +71,7 @@ public class UpmsSessionDao extends CachingSessionDAO {
         }
         RedisUtil.set(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + session.getId(), SerializableUtil.serialize(session), (int) session.getTimeout() / 1000);
         // 更新ZHENG_UPMS_SERVER_SESSION_ID、ZHENG_UPMS_SERVER_CODE过期时间 TODO
-        _log.debug("doUpdate >>>>> sessionId={}", session.getId());
+       logger.debug("doUpdate >>>>> sessionId={}", session.getId());
     }
 
     @Override
@@ -94,14 +100,14 @@ public class UpmsSessionDao extends CachingSessionDAO {
                 jedis.del(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId);
                 jedis.srem(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code, clientSessionId);
             }
-            _log.debug("当前code={}，对应的注册系统个数：{}个", code, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
+           logger.debug("当前code={}，对应的注册系统个数：{}个", code, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
             jedis.close();
             // 维护会话id列表，提供会话分页管理
             RedisUtil.lrem(ZHENG_UPMS_SERVER_SESSION_IDS, 1, sessionId);
         }
         // 删除session
         RedisUtil.remove(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId);
-        _log.debug("doUpdate >>>>> sessionId={}", sessionId);
+       logger.debug("doUpdate >>>>> sessionId={}", sessionId);
     }
 
     /**

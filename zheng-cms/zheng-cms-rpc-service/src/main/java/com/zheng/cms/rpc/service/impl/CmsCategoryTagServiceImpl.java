@@ -1,11 +1,12 @@
 package com.zheng.cms.rpc.service.impl;
 
-import com.zheng.common.annotation.BaseService;
-import com.zheng.common.base.BaseServiceImpl;
 import com.zheng.cms.dao.mapper.CmsCategoryTagMapper;
 import com.zheng.cms.dao.model.CmsCategoryTag;
 import com.zheng.cms.dao.model.CmsCategoryTagExample;
 import com.zheng.cms.rpc.api.CmsCategoryTagService;
+import com.zheng.common.annotation.BaseService;
+import com.zheng.common.base.BaseServiceImpl;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class CmsCategoryTagServiceImpl extends BaseServiceImpl<CmsCategoryTagMapper, CmsCategoryTag, CmsCategoryTagExample> implements CmsCategoryTagService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsCategoryTagServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(CmsCategoryTagServiceImpl.class);
 
     @Autowired
     CmsCategoryTagMapper cmsCategoryTagMapper;

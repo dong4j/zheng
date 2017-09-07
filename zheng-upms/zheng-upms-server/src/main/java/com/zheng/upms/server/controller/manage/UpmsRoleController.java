@@ -1,7 +1,6 @@
 package com.zheng.upms.server.controller.manage;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
@@ -11,12 +10,9 @@ import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsRole;
 import com.zheng.upms.dao.model.UpmsRoleExample;
-import com.zheng.upms.dao.model.UpmsRolePermission;
-import com.zheng.upms.dao.model.UpmsRolePermissionExample;
 import com.zheng.upms.rpc.api.UpmsRolePermissionService;
 import com.zheng.upms.rpc.api.UpmsRoleService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -24,13 +20,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 角色controller
@@ -41,7 +44,7 @@ import java.util.Map;
 @RequestMapping("/manage/role")
 public class UpmsRoleController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsRoleController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsRoleController.class);
 
     @Autowired
     private UpmsRoleService upmsRoleService;

@@ -1,9 +1,27 @@
 package com.zheng.upms.rpc.service.impl;
 
-import com.zheng.upms.dao.mapper.*;
-import com.zheng.upms.dao.model.*;
+import com.zheng.upms.dao.mapper.UpmsLogMapper;
+import com.zheng.upms.dao.mapper.UpmsOrganizationMapper;
+import com.zheng.upms.dao.mapper.UpmsRolePermissionMapper;
+import com.zheng.upms.dao.mapper.UpmsSystemMapper;
+import com.zheng.upms.dao.mapper.UpmsUserMapper;
+import com.zheng.upms.dao.mapper.UpmsUserPermissionMapper;
+import com.zheng.upms.dao.model.UpmsLog;
+import com.zheng.upms.dao.model.UpmsOrganization;
+import com.zheng.upms.dao.model.UpmsOrganizationExample;
+import com.zheng.upms.dao.model.UpmsPermission;
+import com.zheng.upms.dao.model.UpmsRole;
+import com.zheng.upms.dao.model.UpmsRolePermission;
+import com.zheng.upms.dao.model.UpmsRolePermissionExample;
+import com.zheng.upms.dao.model.UpmsSystem;
+import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.dao.model.UpmsUser;
+import com.zheng.upms.dao.model.UpmsUserExample;
+import com.zheng.upms.dao.model.UpmsUserPermission;
+import com.zheng.upms.dao.model.UpmsUserPermissionExample;
 import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.mapper.UpmsApiMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +39,7 @@ import java.util.List;
 @Transactional
 public class UpmsApiServiceImpl implements UpmsApiService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsApiServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsApiServiceImpl.class);
 
     @Autowired
     UpmsUserMapper upmsUserMapper;
@@ -54,7 +72,7 @@ public class UpmsApiServiceImpl implements UpmsApiService {
         // 用户不存在或锁定状态
         UpmsUser upmsUser = upmsUserMapper.selectByPrimaryKey(upmsUserId);
         if (null == upmsUser || 1 == upmsUser.getLocked()) {
-            _log.info("selectUpmsPermissionByUpmsUserId : upmsUserId={}", upmsUserId);
+           logger.info("selectUpmsPermissionByUpmsUserId : upmsUserId={}", upmsUserId);
             return null;
         }
         List<UpmsPermission> upmsPermissions = upmsApiMapper.selectUpmsPermissionByUpmsUserId(upmsUserId);
@@ -82,7 +100,7 @@ public class UpmsApiServiceImpl implements UpmsApiService {
         // 用户不存在或锁定状态
         UpmsUser upmsUser = upmsUserMapper.selectByPrimaryKey(upmsUserId);
         if (null == upmsUser || 1 == upmsUser.getLocked()) {
-            _log.info("selectUpmsRoleByUpmsUserId : upmsUserId={}", upmsUserId);
+           logger.info("selectUpmsRoleByUpmsUserId : upmsUserId={}", upmsUserId);
             return null;
         }
         List<UpmsRole> upmsRoles = upmsApiMapper.selectUpmsRoleByUpmsUserId(upmsUserId);

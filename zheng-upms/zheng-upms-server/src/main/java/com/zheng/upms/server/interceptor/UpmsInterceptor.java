@@ -3,7 +3,7 @@ package com.zheng.upms.server.interceptor;
 import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.rpc.api.UpmsApiService;
-import com.zheng.upms.server.controller.manage.UpmsOrganizationController;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UpmsInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsInterceptor.class);
     private static final String ZHENG_OSS_ALIYUN_OSS_POLICY = PropertiesFileUtil.getInstance("zheng-oss-client").get("zheng.oss.aliyun.oss.policy");
 
     @Autowired

@@ -3,6 +3,7 @@ package com.zheng.ucenter.web.controller;
 import com.zheng.common.base.BaseController;
 import com.zheng.ucenter.common.constant.UcenterResult;
 import com.zheng.ucenter.common.constant.UcenterResultConstant;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SignController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(SignController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SignController.class);
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {

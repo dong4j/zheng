@@ -6,6 +6,7 @@ import com.zheng.ucenter.dao.mapper.UcenterUserOauthMapper;
 import com.zheng.ucenter.dao.model.UcenterUserOauth;
 import com.zheng.ucenter.dao.model.UcenterUserOauthExample;
 import com.zheng.ucenter.rpc.api.UcenterUserOauthService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UcenterUserOauthServiceImpl extends BaseServiceImpl<UcenterUserOauthMapper, UcenterUserOauth, UcenterUserOauthExample> implements UcenterUserOauthService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterUserOauthServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UcenterUserOauthServiceImpl.class);
 
     @Autowired
     UcenterUserOauthMapper ucenterUserOauthMapper;

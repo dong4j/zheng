@@ -6,6 +6,7 @@ import com.zheng.upms.dao.mapper.UpmsUserRoleMapper;
 import com.zheng.upms.dao.model.UpmsUserRole;
 import com.zheng.upms.dao.model.UpmsUserRoleExample;
 import com.zheng.upms.rpc.api.UpmsUserRoleService;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UpmsUserRoleServiceImpl extends BaseServiceImpl<UpmsUserRoleMapper, UpmsUserRole, UpmsUserRoleExample> implements UpmsUserRoleService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserRoleServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsUserRoleServiceImpl.class);
 
     @Autowired
     UpmsUserRoleMapper upmsUserRoleMapper;

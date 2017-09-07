@@ -2,6 +2,7 @@ package com.zheng.cms.web.schedule;
 
 import com.taobao.pamirs.schedule.IScheduleTaskDealSingle;
 import com.taobao.pamirs.schedule.TaskItemDefine;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class LongSchedule implements IScheduleTaskDealSingle<Long> {
 
-    private static Logger _log = LoggerFactory.getLogger(LongSchedule.class);
+    private static final Logger logger = LoggerFactory.getLogger(LongSchedule.class);
 
     /**
      * 执行单个任务
@@ -25,7 +26,7 @@ public class LongSchedule implements IScheduleTaskDealSingle<Long> {
      */
     @Override
     public boolean execute(Long item, String ownSign) throws Exception {
-        _log.info("执行任务：{}", item);
+       logger.info("执行任务：{}", item);
         return true;
     }
 

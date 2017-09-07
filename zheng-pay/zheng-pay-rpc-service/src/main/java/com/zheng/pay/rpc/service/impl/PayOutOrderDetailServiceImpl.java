@@ -6,6 +6,7 @@ import com.zheng.pay.dao.mapper.PayOutOrderDetailMapper;
 import com.zheng.pay.dao.model.PayOutOrderDetail;
 import com.zheng.pay.dao.model.PayOutOrderDetailExample;
 import com.zheng.pay.rpc.api.PayOutOrderDetailService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class PayOutOrderDetailServiceImpl extends BaseServiceImpl<PayOutOrderDetailMapper, PayOutOrderDetail, PayOutOrderDetailExample> implements PayOutOrderDetailService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayOutOrderDetailServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(PayOutOrderDetailServiceImpl.class);
 
     @Autowired
     PayOutOrderDetailMapper payOutOrderDetailMapper;

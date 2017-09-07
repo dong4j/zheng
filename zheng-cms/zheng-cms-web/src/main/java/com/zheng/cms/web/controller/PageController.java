@@ -4,6 +4,7 @@ import com.zheng.cms.dao.model.CmsPage;
 import com.zheng.cms.dao.model.CmsPageExample;
 import com.zheng.cms.rpc.api.CmsPageService;
 import com.zheng.common.base.BaseController;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/page")
 public class PageController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(PageController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 
     @Autowired
     private CmsPageService cmsPageService;

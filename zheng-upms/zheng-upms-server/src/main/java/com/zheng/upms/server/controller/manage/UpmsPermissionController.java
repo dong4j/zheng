@@ -1,7 +1,5 @@
 package com.zheng.upms.server.controller.manage;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
@@ -9,12 +7,14 @@ import com.zheng.common.base.BaseController;
 import com.zheng.common.validator.LengthValidator;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
-import com.zheng.upms.dao.model.*;
+import com.zheng.upms.dao.model.UpmsPermission;
+import com.zheng.upms.dao.model.UpmsPermissionExample;
+import com.zheng.upms.dao.model.UpmsSystem;
+import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.api.UpmsPermissionService;
 import com.zheng.upms.rpc.api.UpmsSystemService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,12 +23,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 权限controller
@@ -39,7 +47,7 @@ import java.util.Map;
 @RequestMapping("/manage/permission")
 public class UpmsPermissionController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsPermissionController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsPermissionController.class);
 
     @Autowired
     private UpmsPermissionService upmsPermissionService;

@@ -5,13 +5,18 @@ import com.zheng.oss.common.constant.OssConstant;
 import com.zheng.oss.common.constant.OssResult;
 import com.zheng.oss.common.constant.OssResultConstant;
 import com.zheng.oss.web.service.AliyunOssService;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/aliyun/oss")
 public class AliyunOssController {
 
-	private static Logger _log = LoggerFactory.getLogger(AliyunOssController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AliyunOssController.class);
 
 	@Autowired
 	private AliyunOssService aliyunOssService;

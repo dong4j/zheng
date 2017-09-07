@@ -1,6 +1,7 @@
 package com.zheng.ucenter.rpc.service.impl;
 
 import com.zheng.ucenter.rpc.api.UcenterApiService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UcenterApiServiceImpl implements UcenterApiService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterApiServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UcenterApiServiceImpl.class);
 
 }

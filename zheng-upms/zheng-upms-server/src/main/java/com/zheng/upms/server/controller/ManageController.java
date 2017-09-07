@@ -1,11 +1,13 @@
 package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
-import com.zheng.upms.dao.model.*;
+import com.zheng.upms.dao.model.UpmsPermission;
+import com.zheng.upms.dao.model.UpmsSystem;
+import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.api.UpmsSystemService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * 后台controller
  * Created by ZhangShuzheng on 2017/01/19.
@@ -27,7 +32,7 @@ import java.util.List;
 @Api(value = "后台管理", description = "后台管理")
 public class ManageController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ManageController.class);
 
 	@Autowired
 	private UpmsSystemService upmsSystemService;

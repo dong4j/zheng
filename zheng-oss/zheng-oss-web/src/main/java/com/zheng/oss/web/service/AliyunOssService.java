@@ -7,6 +7,7 @@ import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
 import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.oss.common.constant.OssConstant;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.Date;
 @Service
 public class AliyunOssService {
 
-	private static Logger _log = LoggerFactory.getLogger(AliyunOssService.class);
+	private static final Logger logger = LoggerFactory.getLogger(AliyunOssService.class);
 
 	@Autowired
 	private OSSClient aliyunOssClient;
@@ -64,7 +65,7 @@ public class AliyunOssService {
 			result.put("callback", callbackData);
 			result.put("action", action);
 		} catch (Exception e) {
-			_log.error("签名生成失败", e);
+			logger.error("签名生成失败", e);
 		}
 		return result;
 	}

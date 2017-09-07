@@ -1,8 +1,17 @@
 package com.zheng.cms.web.controller;
 
-import com.zheng.cms.dao.model.*;
-import com.zheng.cms.rpc.api.*;
+import com.zheng.cms.dao.model.CmsCategory;
+import com.zheng.cms.dao.model.CmsCategoryExample;
+import com.zheng.cms.dao.model.CmsSystem;
+import com.zheng.cms.dao.model.CmsSystemExample;
+import com.zheng.cms.dao.model.CmsTag;
+import com.zheng.cms.dao.model.CmsTagExample;
+import com.zheng.cms.rpc.api.CmsCategoryService;
+import com.zheng.cms.rpc.api.CmsMenuService;
+import com.zheng.cms.rpc.api.CmsSystemService;
+import com.zheng.cms.rpc.api.CmsTagService;
 import com.zheng.common.base.BaseController;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +29,7 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(IndexController.class);
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private CmsMenuService cmsMenuService;

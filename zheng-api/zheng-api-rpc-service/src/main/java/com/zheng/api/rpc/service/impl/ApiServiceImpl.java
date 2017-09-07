@@ -1,8 +1,17 @@
 package com.zheng.api.rpc.service.impl;
 
 import com.zheng.api.rpc.api.ApiService;
-import com.zheng.cms.rpc.api.*;
-import com.zheng.upms.rpc.api.*;
+import com.zheng.cms.rpc.api.CmsArticleService;
+import com.zheng.cms.rpc.api.CmsCategoryService;
+import com.zheng.cms.rpc.api.CmsCommentService;
+import com.zheng.cms.rpc.api.CmsTagService;
+import com.zheng.upms.rpc.api.UpmsApiService;
+import com.zheng.upms.rpc.api.UpmsOrganizationService;
+import com.zheng.upms.rpc.api.UpmsPermissionService;
+import com.zheng.upms.rpc.api.UpmsRoleService;
+import com.zheng.upms.rpc.api.UpmsSystemService;
+import com.zheng.upms.rpc.api.UpmsUserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class ApiServiceImpl implements ApiService {
 
-    private static Logger _log = LoggerFactory.getLogger(ApiServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ApiServiceImpl.class);
 
     @Autowired
     private UpmsSystemService upmsSystemService;

@@ -6,6 +6,7 @@ import com.zheng.upms.dao.mapper.UpmsSystemMapper;
 import com.zheng.upms.dao.model.UpmsSystem;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UpmsSystemServiceImpl extends BaseServiceImpl<UpmsSystemMapper, UpmsSystem, UpmsSystemExample> implements UpmsSystemService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsSystemServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsSystemServiceImpl.class);
 
     @Autowired
     UpmsSystemMapper upmsSystemMapper;

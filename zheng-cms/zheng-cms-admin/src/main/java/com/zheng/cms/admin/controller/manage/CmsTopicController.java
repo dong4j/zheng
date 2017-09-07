@@ -10,8 +10,7 @@ import com.zheng.cms.dao.model.CmsTopicExample;
 import com.zheng.cms.rpc.api.CmsTopicService;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.validator.LengthValidator;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -19,11 +18,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 专题控制器
@@ -34,7 +40,7 @@ import java.util.Map;
 @RequestMapping("/manage/topic")
 public class CmsTopicController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsTopicController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CmsTopicController.class);
 	
 	@Autowired
 	private CmsTopicService cmsTopicService;

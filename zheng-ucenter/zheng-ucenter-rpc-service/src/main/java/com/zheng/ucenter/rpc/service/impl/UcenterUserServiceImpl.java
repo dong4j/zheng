@@ -6,6 +6,7 @@ import com.zheng.ucenter.dao.mapper.UcenterUserMapper;
 import com.zheng.ucenter.dao.model.UcenterUser;
 import com.zheng.ucenter.dao.model.UcenterUserExample;
 import com.zheng.ucenter.rpc.api.UcenterUserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UcenterUserServiceImpl extends BaseServiceImpl<UcenterUserMapper, UcenterUser, UcenterUserExample> implements UcenterUserService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterUserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UcenterUserServiceImpl.class);
 
     @Autowired
     UcenterUserMapper ucenterUserMapper;

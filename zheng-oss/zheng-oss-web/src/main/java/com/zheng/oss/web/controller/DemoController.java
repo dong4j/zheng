@@ -7,6 +7,7 @@ import com.aliyun.oss.model.PutObjectResult;
 import com.zheng.common.base.BaseController;
 import com.zheng.oss.common.constant.OssConstant;
 import com.zheng.oss.web.service.AliyunOssService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
 
@@ -26,7 +26,7 @@ import java.io.*;
 @RequestMapping("/demo")
 public class DemoController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(DemoController.class);
+    private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Autowired
     private AliyunOssService aliyunOssService;
@@ -72,7 +72,7 @@ public class DemoController extends BaseController {
     @GetMapping("/aliyun/upload")
     public String upload(Model model) {
         JSONObject policy = aliyunOssService.policy();
-        _log.info("policy={}", policy);
+       logger.info("policy={}", policy);
         model.addAttribute("policy", policy);
         return thymeleaf("/aliyun/upload");
     }

@@ -4,6 +4,7 @@ import com.zheng.common.base.BaseServiceMock;
 import com.zheng.upms.dao.mapper.UpmsUserRoleMapper;
 import com.zheng.upms.dao.model.UpmsUserRole;
 import com.zheng.upms.dao.model.UpmsUserRoleExample;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,11 +14,11 @@ import org.slf4j.LoggerFactory;
 */
 public class UpmsUserRoleServiceMock extends BaseServiceMock<UpmsUserRoleMapper, UpmsUserRole, UpmsUserRoleExample> implements UpmsUserRoleService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserRoleServiceMock.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpmsUserRoleServiceMock.class);
 
     @Override
     public int role(String[] roleIds, int id) {
-        _log.info("UpmsUserRoleServiceMock => role");
+       logger.info("UpmsUserRoleServiceMock => role");
         return 0;
     }
 
